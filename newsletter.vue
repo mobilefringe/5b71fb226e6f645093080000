@@ -76,6 +76,7 @@
             data: function() {
                 return {
                     dataLoaded: true,
+                    pageBanner: null,
                     pageContent: null,
                     siteInfo: site,
                     form_data : {},
@@ -99,52 +100,34 @@
             },
             created() {
                 this.loadData().then(response => {
+                    var temp_repo = this.findRepoByName('Newsletter Banner');
+                    if(temp_repo != null && temp_repo != undefined) {
+                        this.pageBanner = temp_repo.images[0];
+                    } else {
+                        this.pageBanner = {
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b71eb886e6f6450013c0000/image/jpeg/1529532304000/insidebanner2.jpg"
+                        }
+                    }
+                    
                     this.pageContent = response[0].data;
                     this.dataLoaded = true;
                 });
             },
             computed: {
                 ...Vuex.mapGetters([
-                    'property'
+                    'property',
+                    'findRepoByName'
                 ])
             },
             methods: {
                 loadData: async function () {
                     this.property.mm_host = this.property.mm_host.replace("http:", "");
                     try {
-                        let results = await Promise.all([this.$store.dispatch('LOAD_PAGE_DATA', {url: this.property.mm_host + "/pages/cerritos-newsletter.json"})]);
+                        let results = await Promise.all([this.$store.dispatch('LOAD_PAGE_DATA', {url: this.property.mm_host + "/pages/shopsatrossmoor-newsletter.json"}), this.$store.dispatch("getData", "repos")]);
                         return results;
                     } catch (e) {
                         console.log("Error loading data: " + e.message);
                     }
-                },
-                validateBeforeSubmit(form) {
-                    this.$validator.validateAll().then((result) => {
-                        if (result) {
-                            let errors = this.errors;
-                            
-                            if(errors.length > 0) {
-                                console.log("Error");
-                                this.formError = true;
-                            }
-                            else {
-                                form.preventDefault();
-                                console.log("No Error", form);
-                                var vm = this;
-                                $.getJSON(
-                                form.target.action + "?callback=?",
-                                $(form.target).serialize(),
-                                function (data) {
-                                    if (data.Status === 400) {
-                                       vm.formError = true;
-                                    } else { // 200
-                                        vm.formSuccess = true;
-                                    }
-                                });
-                                
-                            }
-                        }
-                    })
                 }
             }
         });
