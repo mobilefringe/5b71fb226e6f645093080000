@@ -115,12 +115,14 @@
             },
             created (){
                 this.loadData().then(response => {
-                    var temp_repo = this.findRepoByName('Directory Banner').images;
-                    if(temp_repo != null) {
-                        this.pageBanner = temp_repo[0];
-                    } else {
+                    var temp_repo = this.findRepoByName('Directory Banner');
+                    if(temp_repo !== null && temp_repo !== undefined) {
+                       temp_repo = temp_repo.images;
+                       this.pageBanner = temp_repo[0];
+                    }
+                    else {
                         this.pageBanner = {
-                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b5f2c136e6f644fcb5b0100/image/jpeg/1529532304000/insidebanner2.jpg"
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b71eb886e6f6450013c0000/image/jpeg/1529532304000/insidebanner2.jpg"
                         }
                     }
                     
@@ -128,7 +130,7 @@
                     
                     this.query = this.$route.query.category
                     if(this.query == "dining_full_service"){
-                      this.selectedCat = "Dining Full Service";
+                      this.selectedCat = "Dining";
                       this.filterByCategory;
                     } else {
                         this.selectedCat = "All";
@@ -140,7 +142,7 @@
                 $route: function() {
                     this.query = this.$route.query.category
                     if(this.query == "dining_full_service"){
-                      this.selectedCat = "Dining Full Service";
+                      this.selectedCat = "Dining";
                       this.filterByCategory;
                     } else {
                         this.selectedCat = "All";
@@ -217,7 +219,11 @@
                     if (category_id == "All" || category_id == null || category_id == undefined) {
                         category_id = "All";
                     } else {
-                        category_id = this.findCategoryByName(category_id).id;
+                        category = this.findCategoryByName(category_id);
+                        console.log("category", category, category_id)
+                        if(category !==null && category!== undefined){
+                            category_id = category.id;
+                        }
                     }
 
                     if (category_id == "All") {
