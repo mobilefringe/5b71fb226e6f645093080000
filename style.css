@@ -1099,6 +1099,7 @@ $anim-speed: 0.3s;
     .location_image {
         width: calc(33.33%);
         display: inline-block;
+            text-align: center;
         img {
             max-width: 100%;
         }
