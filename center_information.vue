@@ -73,12 +73,13 @@
                         }
                     }
                     
-                    var temp_repo = this.findRepoByName('Center Information Images');
                     if(temp_repo) {
-                        var three_imgs = _.slice(temp_repo.images, [0], [3])
+                        
+                         console.log("temp_repo", temp_repo.images)
+                        var three_imgs = _.slice(_.sortBy(temp_repo.images, function(o){return o.id}), [0], [3])
                         this.pageImages = three_imgs;
 
-                        var one_img = temp_repo.images[3];
+                        var one_img = _.sortBy(temp_repo.images, function(o){return o.id})[3];
                         this.lowerBanner = one_img;
                     }
                     
