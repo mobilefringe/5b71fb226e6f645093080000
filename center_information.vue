@@ -64,6 +64,15 @@
             },
             created() {
                 this.loadData().then(response => {
+                    var repo = this.findRepoByName('Center Information Banner').images;
+                    if(repo != null) {
+                        this.pageBanner = repo[0];
+                    } else {
+                        this.pageBanner = {
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b71e1e76e6f6411c4060000/image/jpeg/1529532304000/insidebanner2.jpg"
+                        }
+                    }
+                    
                     var temp_repo = this.findRepoByName('Center Information Images');
                     if(temp_repo) {
                         var three_imgs = _.slice(temp_repo.images, [0], [3])
