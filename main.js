@@ -98,8 +98,8 @@ require(['Vue', 'vuex', 'vue2-filters', 'vue_router', 'routes', 'vuex-router-syn
                             },
                             {
                                 name: "Dining",
-                                href: "/dine"
-                            },
+                                href: "/stores?category=dining_full_service"
+                            }
                             {
                                 name: "Center Map",
                                 href: "/map"
@@ -148,7 +148,7 @@ require(['Vue', 'vuex', 'vue2-filters', 'vue_router', 'routes', 'vuex-router-syn
                     {
                         name: "Youtube",
                         url: "https://www.youtube.com/channel/UCl-S-o1MrSg-YF_oQYtC42A",
-                        iconClass: "fab fa-instagram"
+                        iconClass: "fab fa-youtube"
                     }
                 ],
             }
