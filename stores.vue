@@ -209,7 +209,7 @@
                     //     });
                     // });
                     // cats = cats.sort();
-                    var cats = _.filter(this.processedCategories, function(o) { return _.toNumber(o.id) !== vm.dineFilter });//!_.includes(o.categories, vm.dineFilter)
+                    var cats = _.filter(this.processedCategories, function(o) { return _.toNumber(o.id) !== vm.dineFilter });
                     cats = _.map(cats, 'name');
                     cats.unshift('All');
                     return cats;
