@@ -74,7 +74,6 @@
             },
             created (){
                 this.loadData().then(response => {
-                    this.dataLoaded = true;
                     this.loadData().then(response => {
                     var temp_repo = this.findRepoByName('Map Banner').images;
                     if(temp_repo != null) {
