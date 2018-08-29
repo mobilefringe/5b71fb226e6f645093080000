@@ -89,7 +89,7 @@
                 ]),
                 couponList: function couponsList() {
                     this.selectedCoupons = JSON.parse(this.selectedCoupons);
-                    console.log("this.selectedCoupons", this.selectedCoupons)
+                    console.log("this.selectedCoupons", this.selectedCoupons[0])
                     if (this.selectedCoupons) {
                         var vm = this;
                         var temp_coupon = [];
