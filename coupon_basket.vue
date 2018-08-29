@@ -171,7 +171,7 @@
                         }
                         else {
                             field = vm.property.default_logo;
-                             console.log("field", field)
+                            //  console.log("field", field)
                         }
                         
                         var field2 = dates;
