@@ -173,7 +173,6 @@
                                 return (val !== current_coupon_id);
                             });
                         }
-                        console.log("Selected Coupons ", vm.selected_coupon_id)
                         
                         var cached_coupon_id = Cookies.get('coupon_ids');
                         if(cached_coupon_id){
