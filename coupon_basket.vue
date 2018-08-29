@@ -90,7 +90,6 @@
                 ]),
                 couponList: function couponsList() {
                     
-                    console.log("this.selectedCoupons", this.selectedCoupons)
                     if (this.selectedCoupons) {
                         var vm = this;
                         var temp_coupon = [];
