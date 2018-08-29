@@ -146,7 +146,7 @@
                 },
                 printPage() {
 			        var timezone = this.timezone
-			        
+			        _.forEach(this.selectedCoupons, function(value, key) {
 			        var start_date = moment(this.currentCoupon.start_date).tz(timezone).format("MM/DD/YYYY");
 					var end_date = moment(this.currentCoupon.end_date).tz(timezone).format("MM/DD/YYYY");
 					var dates = "";
@@ -175,6 +175,7 @@
                     if(field3 != null) html += "<p>" + field3 + "</p></div>";
                     html += "</div></body>";
                     
+			        });
                     w.document.write(html);
                     setTimeout(function(){ w.window.print(); }, 150);
                     
