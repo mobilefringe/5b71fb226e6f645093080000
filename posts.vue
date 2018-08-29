@@ -167,29 +167,6 @@
                     showEvents = _.orderBy(showEvents, function (o) { return o.end_date });
                     showEvents = _.groupBy(showEvents, event => (event.month));
                     return showEvents
-                },
-                promoList: function promos() {
-                    var vm = this;
-                    var showPromos = [];
-                    _.forEach(this.processedPromos, function(value, key) {
-                        var today = moment.tz(this.timezone).format();
-                        var showOnWebDate = moment.tz(value.show_on_web_date, this.timezone).format();
-                        if (today >= showOnWebDate) {
-                            if (value.store != null && value.store != undefined && _.includes(value.store.image_url, 'missing')) {
-                                value.store.image_url = "//codecloud.cdn.speedyrails.net/sites/5b1550796e6f641cab010000/image/png/1529532181000/promoplaceholder2@2x.png";
-                            }
-                            
-                            if (_.includes(value.image_url, 'missing')) {
-                                value.image_url = "//codecloud.cdn.speedyrails.net/sites/5b1550796e6f641cab010000/image/png/1529532181000/promoplaceholder2@2x.png";
-                            }
-                            
-                            value.description_short = _.truncate(value.description, { 'length': 250, 'separator': ' ' });
-                            
-                            showPromos.push(value);
-                        }
-                    });
-                    var sortedPromos = _.orderBy(showPromos, [function(o) { return o.end_date; }]);
-                    return sortedPromos;
                 }
             },
             methods: {
