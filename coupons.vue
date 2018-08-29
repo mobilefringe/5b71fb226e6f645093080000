@@ -174,10 +174,10 @@
                             });
                         }
                         
-                        var cached_coupon_id = Cookies.get('coupon_ids');
-                        if(cached_coupon_id){
-                            cached_coupon_id = JSON.parse(cached_coupon_id);
-                            console.log("Cached Coupons ", cached_coupon_id)
+                        // var cached_coupon_id = Cookies.get('coupon_ids');
+                        // if(cached_coupon_id){
+                        //     cached_coupon_id = JSON.parse(cached_coupon_id);
+                        //     console.log("Cached Coupons ", cached_coupon_id)
                         }
                         
                         // Add updated coupon list to localstorage
