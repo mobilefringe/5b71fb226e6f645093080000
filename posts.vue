@@ -135,8 +135,9 @@
                 ]),
                 blogList: function events() {
                     var blog = this.findBlogBySlug('district-main');
-                    if(blog !== null && blog !== undefined)
+                    if(blog !== null && blog !== undefined) {
                     console.log("blog",blog)
+                    blog = blog.images;
                     var events = _.orderBy(this.processedEvents, function (o) { return o.start_date });
                     var showEvents = [];
                     var month_heading = "";
