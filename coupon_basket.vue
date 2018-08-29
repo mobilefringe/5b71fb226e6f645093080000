@@ -169,7 +169,7 @@
                             field = value.promo_image_url_abs;
                         }
                         else if(!_.includes(value.store_logo, 'missing')) {
-                            field = store_logo;
+                            field = value.store_logo;
                         }
                         
                         var field2 = dates;
