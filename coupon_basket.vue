@@ -171,7 +171,7 @@
                     
                 
                     //check to see if they are null so "undefined" doesnt print on the page. <br>s optional, just to give space
-                    if(field != null && !_.includes(this.currentCoupon.promo_image_url_abs, 'missing')) html += "<img style='padding: 20px; max-width: 300px;' src=" + field + "></div><div style='width:50%; display: inline-block;'>";
+                    if(field != null) html += "<img style='padding: 20px; max-width: 300px;' src=" + field + "></div><div style='width:50%; display: inline-block;'>";
                     if(headers != null) html += "<h4>" + headers + "</h4>";
                     if(field2 != null) html += "<h4>" + field2 + "</h4>";
                     if(field3 != null) html += "<p>" + field3 + "</p></div>";
