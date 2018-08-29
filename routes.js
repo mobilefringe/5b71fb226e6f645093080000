@@ -254,7 +254,7 @@ define([], function () {
             ]
         },
         {
-            path: '/events-and-promotions',
+            path: '/posts',
             component: view('default'),
             meta: {
                 breadcrumb: 'Events & Promotions',
