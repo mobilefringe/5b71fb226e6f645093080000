@@ -166,7 +166,7 @@
                     var headers = value.name;
                     var field;
                     if(!_.includes(this.currentCoupon.promo_image_url_abs, 'missing')){
-                        var field = value.promo_image_url_abs;
+                        field = value.promo_image_url_abs;
                     }
                     
                     var field2 = dates;
