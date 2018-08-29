@@ -71,7 +71,8 @@
                 return {
                     dataLoaded: false,
                     currentCoupon: null,
-                    siteInfo: site,
+                    siteInfo: site,,
+                    
                 }
             },
             created() {
