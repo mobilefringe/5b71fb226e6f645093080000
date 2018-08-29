@@ -203,7 +203,7 @@
                     vm.$router.push({ path: 'coupons/my-basket', params: { selected: vm.selected_coupon_id }});
                 },
                 initalizeCouponsfromCookies (){
-                    
+                    this.selectedCoupons = Cookies.get('coupon_ids');
                 }
             }
         });
