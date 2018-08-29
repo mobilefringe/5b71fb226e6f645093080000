@@ -174,7 +174,7 @@
                         
                         var field2 = dates;
                         var field3 = value.description;
-                        
+                        console.log("field", field)
                         //top-styling
                         html +="<div style='margin: 0 auto; max-width: 700px; min-height: 300px; border-top: solid 1px #ccc; border-bottom: solid 1px #ccc;'><div style='width:50%; display: inline-block; vertical-align: top; text-align: left;'>";
                         //check to see if they are null so "undefined" doesnt print on the page. <br>s optional, just to give space
