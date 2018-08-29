@@ -183,9 +183,10 @@
                     if(headers != null) html += "<h4>" + headers + "</h4>";
                     if(field2 != null) html += "<h4>" + field2 + "</h4>";
                     if(field3 != null) html += "<p>" + field3 + "</p></div>";
-                    html += "</div></body>";
+                    
                     
 			        });
+			        html += "</div></body>";
                     w.document.write(html);
                     setTimeout(function(){ w.window.print(); }, 150);
                     
