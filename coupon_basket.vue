@@ -170,7 +170,7 @@
                         field = value.promo_image_url_abs;
                     }
                     else {
-                        field = vm.promo_image_url_abs;
+                        field = vm.property.default_url;
                     }
                     
                     var field2 = dates;
