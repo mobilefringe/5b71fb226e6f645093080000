@@ -132,6 +132,9 @@
                 },
                 selectedCoupon(item) {
                     console.log(item)    
+                },
+                removeCoupon(item){
+                    
                 }
             }
         });
