@@ -157,6 +157,7 @@
                     }
                 },
                 selectCoupon(item){
+                    var vm = this;
                     this.$nextTick(function() {
                         var current_coupon_id = item.id;
                         item.is_in_cart = !item.is_in_cart
@@ -198,7 +199,7 @@
                     Cookies.set('coupon_ids', JSON.stringify(vm.selected_coupon_id));
                     console.log("Cookies ", JSON.stringify(vm.selected_coupon_id))
                 
-                    this.$router.push({ path: 'coupons/my-basket', params: { selected: selected_coupon_id }});
+                    vm.$router.push({ path: 'coupons/my-basket', params: { selected: selected_coupon_id }});
                 }
             }
         });
