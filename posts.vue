@@ -21,7 +21,7 @@
         		        </div>
         		    </div>
                     <div v-if="toggleEvents">
-                        <div v-if="eventList" v-for="(events, key) in eventList">
+                        <div v-if="blogList" v-for="(events, key) in blogList">
                             <div class="row">
                                 <div class="col-md-12">
                                     <h3 class="event_date_heading">{{ key }}</h3> 
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row margin_60" v-if="Object.keys(eventList).length === 0">
+                        <div class="row margin_60" v-if="Object.keys(blogList).length === 0">
                             <div class="col-md-12">
                                 <p>Sorry, there are no Events posted at this time. Please check back soon!</p>    
                             </div>
