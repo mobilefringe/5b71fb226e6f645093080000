@@ -195,8 +195,8 @@
                         
                     // Add updated coupon list to localstorage
                     Cookies.set('coupon_ids', '');
-                    Cookies.set('coupon_ids', JSON.stringify(this.selected_coupon_id));
-                    console.log("Cookies ", JSON.stringify(this.selected_coupon_id))
+                    Cookies.set('coupon_ids', JSON.stringify(vm.selected_coupon_id));
+                    console.log("Cookies ", JSON.stringify(vm.selected_coupon_id))
                 
                     this.$router.push({ path: 'coupons/my-basket', params: { selected: selected_coupon_id }});
                 }
