@@ -141,6 +141,9 @@
                     console.log("new_list", new_list);
                     vm.couponsInBasket = new_list;
                     //update the cache
+                    // Add updated coupon list to localstorage
+                    Cookies.set('coupon_ids', '');
+                    Cookies.set('coupon_ids', JSON.stringify(vm.selected_coupon_id));
                 }
             }
         });
