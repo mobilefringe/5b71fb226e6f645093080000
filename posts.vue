@@ -94,7 +94,7 @@
     define(["Vue", "vuex", "moment", "moment-timezone", "vue-moment", "vue-lazy-load", "bootstrap-vue"], function (Vue, Vuex, moment, tz, VueMoment, VueLazyload, BootstrapVue) {
         Vue.use(BootstrapVue);
         Vue.use(VueLazyload);
-        return Vue.component("blog", {
+        return Vue.component("posts", {
             template: template, // the variable template will be injected,
             data: function () {
                 return {
