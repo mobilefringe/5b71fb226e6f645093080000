@@ -263,7 +263,7 @@ define([], function () {
                 {
                     path: '',
                     component: view('events_and_promotions'),
-                    name: 'events_and_promotions'
+                    name: 'posts'
                 }
             ]
         },
