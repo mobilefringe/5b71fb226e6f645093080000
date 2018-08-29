@@ -164,6 +164,7 @@
                     var w = window.open();
 
                     var headers = value.name;
+                    var field;
                     if(!_.includes(this.currentCoupon.promo_image_url_abs, 'missing')){
                         var field = value.promo_image_url_abs;
                     }
