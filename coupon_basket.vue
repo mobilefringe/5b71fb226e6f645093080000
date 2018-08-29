@@ -168,8 +168,8 @@
                         if(!_.includes(value.promo_image_url_abs, 'missing')){
                             field = value.promo_image_url_abs;
                         }
-                        else {
-                            field = store_logo
+                        else if(!_.includes(value.promo_image_url_abs, 'missing')) {
+                            field = store_logo;
                         }
                         
                         var field2 = dates;
