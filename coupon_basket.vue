@@ -185,7 +185,7 @@
                         
                     
 			        });
-			        html += "</div></body>";
+			        html += "</body>";
 			        var w = window.open();
                     w.document.write(html);
                     setTimeout(function(){ w.window.print(); }, 150);
