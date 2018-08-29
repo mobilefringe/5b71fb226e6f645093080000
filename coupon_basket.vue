@@ -169,7 +169,7 @@
                             field = value.promo_image_url_abs;
                         }
                         else {
-                            field = vm.property.default_logo;
+                            field = store_logo
                         }
                         
                         var field2 = dates;
