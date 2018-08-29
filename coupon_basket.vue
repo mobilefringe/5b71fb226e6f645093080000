@@ -152,7 +152,7 @@
                     html += '<head></head>';
                     html += "<body><div style='text-align:center;'><img style='max-width: 250px; padding: 15px 0;' src='//codecloud.cdn.speedyrails.net/sites/5b71fb226e6f645093080000/image/png/1535042524544/dtl_600x180_logo.png' style='width:200px;'/></div>";
                     
-			        _.forEach(this.selectedCoupons, function(value, key) {
+			        _.forEach(this.couponsInBasket, function(value, key) {
     			        var start_date = moment(value.start_date).tz(timezone).format("MM/DD/YYYY");
     					var end_date = moment(value.end_date).tz(timezone).format("MM/DD/YYYY");
     					var dates = "";
