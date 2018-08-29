@@ -199,7 +199,7 @@
                     Cookies.set('coupon_ids', JSON.stringify(vm.selected_coupon_id));
                     console.log("Cookies ", JSON.stringify(vm.selected_coupon_id))
                 
-                    vm.$router.push({ path: 'coupons/my-basket', params: { selected: selected_coupon_id }});
+                    vm.$router.push({ path: 'coupons/my-basket', params: { selected: vm.selected_coupon_id }});
                 }
             }
         });
