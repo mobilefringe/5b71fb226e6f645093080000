@@ -27,7 +27,7 @@
                                     <span v-if="isMultiDay(currentCoupon)">{{ currentCoupon.start_date | moment("MM/DD/YYY", timezone)}} - {{ currentCoupon.end_date | moment("MM/DD/YYY", timezone)}}</span>
                                     <span v-else>{{ currentCoupon.start_date | moment("MM/DD/YYY", timezone)}}</span>
                                 </p>
-                                <img :src="currentCoupon.image_url" :alt="currentCoupon.name" />
+                                <img v-if="!_.includes(this.currentCoupon.promo_image_url_abs, 'missing')" :src="currentCoupon.image_url" :alt="currentCoupon.name" />
                                 <div class="event_desc event_details" v-html="currentCoupon.rich_description"></div>
                                 <div class="row margin_30">
                                     <div class="col-md-12">
