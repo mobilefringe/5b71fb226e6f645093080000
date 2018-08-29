@@ -146,6 +146,7 @@
                 },
                 printPage() {
 			        var timezone = this.timezone
+			        
 			        var start_date = moment(this.currentCoupon.start_date).tz(timezone).format("MM/DD/YYYY");
 					var end_date = moment(this.currentCoupon.end_date).tz(timezone).format("MM/DD/YYYY");
 					var dates = "";
