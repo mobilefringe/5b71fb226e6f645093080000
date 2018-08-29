@@ -140,10 +140,10 @@
                     var new_list = _.filter(vm.couponsInBasket,function(o){return o.id !==item.id;})
                     console.log("new_list", new_list);
                     vm.couponsInBasket = new_list;
-                    vm.selectedCoupons = vm.couponsInBaske;
+                    vm.selectedCoupons = vm.couponsInBasket;
                     // Add updated coupon list to localstorage
                     Cookies.set('coupon_ids', '');
-                    Cookies.set('coupon_ids', JSON.stringify(vm.selected_coupon_id));
+                    Cookies.set('coupon_ids', JSON.stringify(vm.selectedCoupons));
                 }
             }
         });
