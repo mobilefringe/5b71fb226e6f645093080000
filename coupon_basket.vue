@@ -163,7 +163,7 @@
 					
                     var w = window.open();
 
-                    var headers = this.currentCoupon.name;
+                    var headers = value.name;
                     var field = this.currentCoupon.promo_image_url_abs;
                     var field2 = dates;
                     var field3 = this.currentCoupon.description;
