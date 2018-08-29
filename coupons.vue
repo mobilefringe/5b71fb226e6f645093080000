@@ -81,7 +81,7 @@
                     // Cookies.remove('coupon_ids');
                     // this.cachedCoupons();
                     // this.selectedCoupons = Cookies.get('coupon_ids');
-                    initalizeCouponsfromCookies
+                    initalizeCouponsfromCookies();
                     this.dataLoaded = true;
                 });
             },
@@ -201,6 +201,9 @@
                     // console.log("Cookies ", JSON.stringify(vm.selected_coupon_id))
                 
                     vm.$router.push({ path: 'coupons/my-basket', params: { selected: vm.selected_coupon_id }});
+                },
+                initalizeCouponsfromCookies (){
+                    
                 }
             }
         });
