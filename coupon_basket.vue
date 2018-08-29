@@ -168,6 +168,9 @@
                     if(!_.includes(this.currentCoupon.promo_image_url_abs, 'missing')){
                         field = value.promo_image_url_abs;
                     }
+                    else {
+                        
+                    }
                     
                     var field2 = dates;
                     var field3 = value.description;
