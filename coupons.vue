@@ -80,7 +80,8 @@
                 this.loadData().then(response => {
                     // Cookies.remove('coupon_ids');
                     // this.cachedCoupons();
-                    this.selectedCoupons = Cookies.get('coupon_ids');
+                    // this.selectedCoupons = Cookies.get('coupon_ids');
+                    initalizeCouponsfromCookies
                     this.dataLoaded = true;
                 });
             },
