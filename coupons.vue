@@ -105,7 +105,7 @@
                             }
                             
                             if (_.includes(value.image_url, 'missing')) {
-                                value.image_url = "//codecloud.cdn.speedyrails.net/sites/5b71fb226e6f645093080000/image/png/1529516445000/cerritos.png";
+                                value.image_url = vm.property.default_logo
                             }
                             
                             value.name_short = _.truncate(value.name, { 'length': 30, 'separator': ' ' });
