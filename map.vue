@@ -75,7 +75,7 @@
             created (){
                 this.loadData().then(response => {
                     this.loadData().then(response => {
-                    var temp_repo = this.findRepoByName('Map Banner').images;
+                    var temp_repo = this.findRepoByName('Map Banner');
                     if(temp_repo !== null && temp_repo !== undefined) {
                        temp_repo = temp_repo.images;
                        this.pageBanner = temp_repo[0];
@@ -96,7 +96,8 @@
                     'processedStores',
                     "processedCategories",
                     "storesByCategoryName",
-                    'findCategoryByName'
+                    'findCategoryByName',
+                    'findRepoByName'
                 ]),
                 allStores() {
                     this.processedStores.map(function(store){
