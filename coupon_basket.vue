@@ -141,6 +141,7 @@
                     console.log("new_list", new_list);
                     vm.couponsInBasket = new_list;
                     vm.selectedCoupons =  _.filter(vm.selectedCoupons,function(o){return _.toNumber(o) !== _.toNumber(item.id);})
+                    console.log("vm.selectedCoupons", vm.selectedCoupons);
                     // Add updated coupon list to localstorage
                     Cookies.set('coupon_ids', '');
                     Cookies.set('coupon_ids', JSON.stringify(vm.selectedCoupons));
