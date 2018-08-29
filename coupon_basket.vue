@@ -145,6 +145,7 @@
                     Cookies.set('coupon_ids', JSON.stringify(vm.selectedCoupons));
                 },
                 printPage() {
+                    var vm = this;
 			        var timezone = this.timezone
 			        var html = "<!DOCTYPE HTML>";
                     html += '<html lang="en-us">';
