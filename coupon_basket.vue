@@ -140,7 +140,7 @@
                     var new_list = _.filter(vm.couponsInBasket,function(o){return o.id !==item.id;})
                     console.log("new_list", new_list);
                     vm.couponsInBasket = new_list;
-                    vm.selectedCoupons =  _.filter(vm.couponsInBasket,function(o){return o.id !==item.id;})
+                    vm.selectedCoupons =  _.filter(vm.selectedCoupons,function(o){return o.id !==item.id;})
                     // Add updated coupon list to localstorage
                     Cookies.set('coupon_ids', '');
                     Cookies.set('coupon_ids', JSON.stringify(vm.selectedCoupons));
