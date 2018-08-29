@@ -88,7 +88,7 @@
                     'findCouponById'
                 ]),
                 couponList: function couponsList() {
-                    // this.selectedCoupons = JSON.parse(this.selectedCoupons);
+                    this.selectedCoupons = JSON.parse(this.selectedCoupons);
                     console.log("this.selectedCoupons", this.selectedCoupons)
                     if (this.selectedCoupons) {
                         var vm = this;
