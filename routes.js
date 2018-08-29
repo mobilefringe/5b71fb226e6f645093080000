@@ -267,7 +267,16 @@ define([], function () {
                 },
                 {
                     path: ':id',
-                    component: view('promotion_details'),
+                    component: view(',
+                        {
+                            path: ':id',
+                            component: view('promotion_details'),
+                            meta: {
+                                breadcrumb: 'Promotion Details',
+                            },
+                            name: 'promotionDetails',
+                            props: true
+                        }_details'),
                     meta: {
                         breadcrumb: 'Promotion Details',
                     },
