@@ -164,7 +164,7 @@
     					
                         
                         var headers = value.name;
-                        var field;
+                        var field = null;
                         if(!_.includes(value.promo_image_url_abs, 'missing')){
                             field = value.promo_image_url_abs;
                         }
@@ -181,7 +181,7 @@
                         if(field != null) html += "<img style='padding: 20px; max-width: 300px;' src=" + field + "></div><div style='width:50%; display: inline-block;'>";
                         if(headers != null) html += "<h4>" + headers + "</h4>";
                         if(field2 != null) html += "<h4>" + field2 + "</h4>";
-                        if(field3 != null) html += "<p>" + field3 + "</p></div>";
+                        if(field3 != null) html += "<p>" + field3 + "</p></div></div>";
                         
                     
 			        });
