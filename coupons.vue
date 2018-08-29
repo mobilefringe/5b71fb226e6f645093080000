@@ -161,18 +161,18 @@
                     this.$nextTick(function() {
                         var current_coupon_id = item.id;
                         item.is_in_cart = !item.is_in_cart
-                        this.selectedCoupon = !this.selectedCoupon
+                        vm.selectedCoupon = !vm.selectedCoupon
                         if (item.is_in_cart) {
-                            this.basketItems = this.basketItems + 1
-                            this.selected_coupon_id.push(current_coupon_id);
+                            vm.basketItems = this.basketItems + 1
+                            vm.selected_coupon_id.push(current_coupon_id);
                         } else {
-                            this.basketItems = this.basketItems - 1
+                            vm.basketItems = vm.basketItems - 1
                             //remove coupon from list variable
-                            this.selected_coupon_id = $.grep(this.selected_coupon_id, function(val, i) {
+                            vm.selected_coupon_id = $.grep(vm.selected_coupon_id, function(val, i) {
                                 return (val !== current_coupon_id);
                             });
                         }
-                        console.log("Selected Coupons ", this.selected_coupon_id)
+                        console.log("Selected Coupons ", vm.selected_coupon_id)
                         
                         var cached_coupon_id = Cookies.get('coupon_ids');
                         if(cached_coupon_id){
