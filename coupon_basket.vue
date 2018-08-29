@@ -162,7 +162,7 @@
     						dates = start_date;
     					}
     					
-                        var w = window.open();
+                        
     
                         var headers = value.name;
                         var field;
@@ -187,6 +187,7 @@
                     
 			        });
 			        html += "</div></body>";
+			        var w = window.open();
                     w.document.write(html);
                     setTimeout(function(){ w.window.print(); }, 150);
                     
