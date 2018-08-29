@@ -94,7 +94,7 @@
                         var temp_coupon = [];
                         _.forEach(this.selectedCoupons, function(value, key) {
                             var current_coupon = vm.findCouponById(value);
-                            
+                            console.log("current_coupon");
                             if (current_coupon.store !==null && current_coupon.store !==undefined && _.includes(current_coupon.store.store_front_url_abs, 'missing')) {
                                 current_coupon.store_logo = vm.property.default_logo
                             } else {
