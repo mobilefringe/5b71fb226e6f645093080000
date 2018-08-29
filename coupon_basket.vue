@@ -169,7 +169,7 @@
                         field = value.promo_image_url_abs;
                     }
                     else {
-                        
+                        field = value.promo_image_url_abs;
                     }
                     
                     var field2 = dates;
