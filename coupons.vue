@@ -204,6 +204,7 @@
                 },
                 initalizeCouponsfromCookies (){
                     this.selected_coupon_id = Cookies.get('coupon_ids');
+                    console.log("this.selected_coupon_id",this.selected_coupon_id);
                 }
             }
         });
