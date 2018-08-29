@@ -138,7 +138,7 @@
                 removeCoupon(item){
                     var vm = this;
                     var new_list = _.filter(vm.couponsInBasket,function(o){return o.id !==item.id;})
-                    console.log(new_list);
+                    console.log("new_list", new_list);
                 }
             }
         });
