@@ -265,15 +265,15 @@ define([], function () {
                     component: view('blog'),
                     name: 'blog'
                 },
-                        {
-                            path: ':id',
-                            component: view('promotion_details'),
-                            meta: {
-                                breadcrumb: 'Promotion Details',
-                            },
-                            name: 'promotionDetails',
-                            props: true
-                        }
+                {
+                    path: ':id',
+                    component: view('promotion_details'),
+                    meta: {
+                        breadcrumb: 'Promotion Details',
+                    },
+                    name: 'promotionDetails',
+                    props: true
+                }
             ]
         },
         {
