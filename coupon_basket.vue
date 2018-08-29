@@ -143,7 +143,42 @@
                     // Add updated coupon list to localstorage
                     Cookies.set('coupon_ids', '');
                     Cookies.set('coupon_ids', JSON.stringify(vm.selectedCoupons));
-                }
+                },
+                printPage() {
+			        var timezone = this.timezone
+			        var start_date = moment(this.currentCoupon.start_date).tz(timezone).format("MM/DD/YYYY");
+					var end_date = moment(this.currentCoupon.end_date).tz(timezone).format("MM/DD/YYYY");
+					var dates = "";
+					if (start_date === end_date) {
+						dates = start_date + " to " + end_date;
+					} else {
+						dates = start_date;
+					}
+					
+                    var w = window.open();
+
+                    var headers = this.currentCoupon.name;
+                    var field = this.currentCoupon.promo_image_url_abs;
+                    var field2 = dates;
+                    var field3 = this.currentCoupon.description;
+                    
+                    var html = "<!DOCTYPE HTML>";
+                    html += '<html lang="en-us">';
+                    html += '<head></head>';
+                    html += "<body><div style='text-align:center;'><img style='max-width: 250px; padding: 15px 0;' src='//codecloud.cdn.speedyrails.net/sites/5b71fb226e6f645093080000/image/png/1535042524544/dtl_600x180_logo.png' style='width:200px;'/></div><div style='margin: 0 auto; max-width: 700px; min-height: 300px; border-top: solid 1px #ccc; border-bottom: solid 1px #ccc;'><div style='width:50%; display: inline-block; vertical-align: top; text-align: left;'>";
+                
+                    //check to see if they are null so "undefined" doesnt print on the page. <br>s optional, just to give space
+                    if(field != null && !_.includes(this.currentCoupon.promo_image_url_abs, 'missing')) html += "<img style='padding: 20px; max-width: 300px;' src=" + field + "></div><div style='width:50%; display: inline-block;'>";
+                    if(headers != null) html += "<h4>" + headers + "</h4>";
+                    if(field2 != null) html += "<h4>" + field2 + "</h4>";
+                    if(field3 != null) html += "<p>" + field3 + "</p></div>";
+                    html += "</div></body>";
+                    
+                    w.document.write(html);
+                    setTimeout(function(){ w.window.print(); }, 150);
+                    
+                    w.document.close();
+                },
             }
         });
     });
