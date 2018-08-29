@@ -73,7 +73,8 @@
                     moreEvents: [],
                     moreEventsFetched: false,
                     noMoreEvents: false,
-                    noEvents: false
+                    noEvents: false,
+                    couponsInBasket:null
                 }
             },
             created (){
