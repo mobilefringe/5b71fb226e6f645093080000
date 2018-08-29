@@ -163,7 +163,6 @@
     					}
     					
                         
-    
                         var headers = value.name;
                         var field;
                         if(!_.includes(value.promo_image_url_abs, 'missing')){
