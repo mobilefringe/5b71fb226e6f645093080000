@@ -133,7 +133,7 @@
                     'findRepoByName',
                     'findBlogBySlug'
                 ]),
-                eventList: function events() {
+                blogList: function events() {
                     var events = _.orderBy(this.processedEvents, function (o) { return o.start_date });
                     var showEvents = [];
                     var month_heading = "";
