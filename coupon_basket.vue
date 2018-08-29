@@ -29,7 +29,8 @@
         		        </div>
         		    </div>
                     <div class="row">
-                        <div v-for="(item, index) in couponList" :key="item.id" v-on:remove="couponList.splice(index, 1)" class="col-md-6 col-sm-6 col-xs-12">
+                        <div v-for="(item, index) in couponList" :key="item.id" class="col-md-6 col-sm-6 col-xs-12"> 
+                         <!--v-on:remove="couponList.splice(index, 1)"-->
                             <div :id="item.id" class="row coupon_container">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="coupon_img">
