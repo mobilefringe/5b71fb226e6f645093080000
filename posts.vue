@@ -135,7 +135,7 @@
                 ]),
                 blogList: function events() {
                     var blog = this.findBlogBySlug('district-main');
-                    if(blog !== null && blog !== undeifned )
+                    if(blog !== null && blog !== undefined)
                     console.log("blog",blog)
                     var events = _.orderBy(this.processedEvents, function (o) { return o.start_date });
                     var showEvents = [];
