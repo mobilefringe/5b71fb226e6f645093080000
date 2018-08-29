@@ -150,7 +150,7 @@
 			        var html = "<!DOCTYPE HTML>";
                     html += '<html lang="en-us">';
                     html += '<head></head>';
-                    html += "<body><div style='text-align:center;'><img style='max-width: 250px; padding: 15px 0;' src='//codecloud.cdn.speedyrails.net/sites/5b71fb226e6f645093080000/image/png/1535042524544/dtl_600x180_logo.png' style='width:200px;'/></div><div style='margin: 0 auto; max-width: 700px; min-height: 300px; border-top: solid 1px #ccc; border-bottom: solid 1px #ccc;'><div style='width:50%; display: inline-block; vertical-align: top; text-align: left;'>";
+                    html += "<body><div style='text-align:center;'><img style='max-width: 250px; padding: 15px 0;' src='//codecloud.cdn.speedyrails.net/sites/5b71fb226e6f645093080000/image/png/1535042524544/dtl_600x180_logo.png' style='width:200px;'/></div>";
                     
 			        _.forEach(this.selectedCoupons, function(value, key) {
 			        var start_date = moment(value.start_date).tz(timezone).format("MM/DD/YYYY");
