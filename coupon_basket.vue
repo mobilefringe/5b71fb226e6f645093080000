@@ -82,6 +82,7 @@
                     this.selectedCoupons = Cookies.get('coupon_ids');
                     this.selectedCoupons = JSON.parse(this.selectedCoupons);
                     this.dataLoaded = true;
+                    this.couponsInBasket = this.couponList;
                 });
             },
             computed: {
