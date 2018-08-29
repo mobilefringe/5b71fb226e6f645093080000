@@ -168,7 +168,7 @@
                         if(!_.includes(value.promo_image_url_abs, 'missing')){
                             field = value.promo_image_url_abs;
                         }
-                        else if(!_.includes(value.store_logo, 'missing')) {
+                        else {
                             field = value.store_logo;
                         }
                         
