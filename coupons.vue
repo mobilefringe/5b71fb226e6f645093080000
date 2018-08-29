@@ -105,7 +105,7 @@
                             }
                             
                             if (_.includes(value.image_url, 'missing')) {
-                                value.image_url = vm.property.default_logo
+                                value.image_url = vm.property.default_logo;
                             }
                             
                             value.name_short = _.truncate(value.name, { 'length': 30, 'separator': ' ' });
@@ -186,6 +186,7 @@
                     });
                 },
                 addCookies() {
+                    var vm = this;
                     var cached_coupon_id = Cookies.get('coupon_ids');
                     if(cached_coupon_id){
                         cached_coupon_id = JSON.parse(cached_coupon_id);
