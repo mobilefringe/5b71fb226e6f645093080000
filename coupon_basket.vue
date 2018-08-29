@@ -167,11 +167,9 @@
                         var field = null;
                         if(!_.includes(value.promo_image_url_abs, 'missing')){
                             field = value.promo_image_url_abs;
-                             console.log("field", field, value)
                         }
                         else {
                             field = vm.property.default_logo;
-                            //  console.log("field", field)
                         }
                         
                         var field2 = dates;
