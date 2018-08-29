@@ -89,7 +89,6 @@
                     'findCouponById'
                 ]),
                 couponList: function couponsList() {
-                    
                     if (this.selectedCoupons) {
                         var vm = this;
                         var temp_coupon = [];
