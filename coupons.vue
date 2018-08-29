@@ -81,7 +81,7 @@
                     // Cookies.remove('coupon_ids');
                     // this.cachedCoupons();
                     // this.selectedCoupons = Cookies.get('coupon_ids');
-                    initalizeCouponsfromCookies();
+                    this.initalizeCouponsfromCookies();
                     this.dataLoaded = true;
                 });
             },
