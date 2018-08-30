@@ -109,7 +109,7 @@
                 ...Vuex.mapGetters([
                     'property',
                     'timezone',
-                    'findBlogPostBySlug'
+                    'findBlogPostBySlug2'
                 ])
             },
             methods: {
