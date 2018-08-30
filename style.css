@@ -1078,7 +1078,7 @@ $anim-speed: 0.3s;
 /****** BLOG ******/
 .blog_container {
     .animated_btn.stores_btn {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 }
 /* *** LEASING *** */
