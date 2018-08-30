@@ -143,7 +143,7 @@
                         if (today >= showOnWebDate) {
                             var start_month = moment.tz(value.start_date, this.timezone).format("MM-YYYY");
                             if (start_month <= today_month) {
-                                value.month = moment.tz(this.timezone).format("MMMM YYYY");
+                                value.month = 'On going'; // moment.tz(this.timezone).format("MMMM YYYY");
                                 month_heading = today_month;
                             } else {
                                 value.month = moment.tz(value.start_date, this.timezone).format("MMMM YYYY");
