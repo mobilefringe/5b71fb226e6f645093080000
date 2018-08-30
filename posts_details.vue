@@ -78,7 +78,7 @@
                 }
             },
             created() {
-				this.$store.dispatch("getData", "promotions").then(response => {
+				this.$store.dispatch("getData", "blogs").then(response => {
 					this.currentPromo = this.findBlogPostBySlug(this.id);
 					if (this.currentPromo === null || this.currentPromo === undefined) {
 						this.$router.replace({ path: '/posts' });
