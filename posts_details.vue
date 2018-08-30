@@ -79,6 +79,7 @@
             },
             created() {
 				this.$store.dispatch("getData", "blogs").then(response => {
+				    console.log("this.id", this.id)
 					this.currentPromo = this.findBlogPostBySlug(this.id);
 					if (this.currentPromo === null || this.currentPromo === undefined) {
 						this.$router.replace({ path: '/posts' });
