@@ -80,7 +80,7 @@
             created() {
 				this.$store.dispatch("getData", "blogs").then(response => {
 				    console.log("this.id", this.id)
-					this.currentPromo = this.findBlogPostBySlug('district-main',this.id);
+					this.currentPromo = this.findBlogPostBySlug2('district-main',this.id);
 					if (this.currentPromo === null || this.currentPromo === undefined) {
 						this.$router.replace({ path: '/posts' });
 					}
