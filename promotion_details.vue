@@ -3,7 +3,7 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_page_header">
+               <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(' + pageBanner.image_url + ') center center' }">
                     <div class="main_container position_relative">
                         <h2>Sales & Promotions</h2>
                     </div>
@@ -38,7 +38,7 @@
                                     <div class="col-md-12">
                                         <router-link to="/events-and-promotions">
                     		                <div class="animated_btn pull-left">Back to Events & Promotions</div>    
-                    		            </router-link> 
+                    		            </router-link>   
                                     </div>
                                 </div>
                                 <social-sharing v-if="currentPromo" :url="shareURL(currentPromo.slug)" :title="currentPromo.name" :description="currentPromo.description" :quote="truncate(currentPromo.description)" :twitter-user="siteInfo.twitterHandle" :media="currentPromo.image_url" inline-template>
@@ -73,15 +73,36 @@
             data: function() {
                 return {
                     dataLoaded: false,
+                    pageBanner: null,
                     currentPromo: null,
                     siteInfo: site
                 }
             },
             created() {
 				this.$store.dispatch("getData", "promotions").then(response => {
+				    var temp_repo = this.findRepoByName('Events Banner').images;
+                    if(temp_repo != null) {
+                        this.pageBanner = temp_repo[0];
+                    } else {
+                        this.pageBanner = {
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b5f2c136e6f644fcb5b0100/image/jpeg/1529532304000/insidebanner2.jpg"
+                        }
+                    }
+                    
 					this.currentPromo = this.findPromoBySlug(this.id);
 					if (this.currentPromo === null || this.currentPromo === undefined) {
 						this.$router.replace({ path: '/promotions' });
+					}
+					else {
+					    if (this.currentPromo.promotionable_type === "Store"){
+                            if  (_.includes(this.currentPromo.promo_image_url_abs, 'missing')) {
+                                this.currentPromo.image_url = this.currentPromo.store.store_front_url_abs; 
+                            }
+                        } else {
+                            if  (_.includes(this.currentPromo.promo_image_url_abs, 'missing')) {
+                                this.currentPromo.image_url = "//codecloud.cdn.speedyrails.net/sites/5b8712636e6f641ebd220000/image/png/1529532181000/promoplaceholder2@2x.png";    
+                            }
+                        }
 					}
 					this.$breadcrumbs[2].meta.breadcrumb = this.currentPromo.name
 					this.dataLoaded = true;
@@ -89,26 +110,12 @@
 					console.error("Could not retrieve data from server. Please check internet connection and try again.");
 				});
 			},
-			watch: {
-                currentPromo : function (){
-                    if(this.currentPromo != null) {
-                        if (this.currentPromo.promotionable_type === "Store"){
-                            if  (_.includes(this.currentPromo.promo_image_url_abs, 'missing')) {
-                                this.currentPromo.image_url = this.currentPromo.store.store_front_url_abs; 
-                            }
-                        } else {
-                            if  (_.includes(this.currentPromo.promo_image_url_abs, 'missing')) {
-                                this.currentPromo.image_url = "//codecloud.cdn.speedyrails.net/sites/5b71fb226e6f645093080000/image/png/1529532181000/promoplaceholder2@2x.png";    
-                            }
-                        }
-                    }
-                }
-            },
             computed: {
                 ...Vuex.mapGetters([
                     'property',
                     'timezone',
-                    'findPromoBySlug'
+                    'findPromoBySlug',
+                    'findRepoByName'
                 ])
             },
             methods: {
