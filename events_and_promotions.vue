@@ -16,8 +16,8 @@
                     </div>
                     <div class="row margin_40">
         		        <div class="col-md-6 clearfix">
-        		            <button :class="{ change_color: toggleEvents }" class="animated_btn stores_btn" @click="toggleView(toggleEvents)">Events</button>
-        		            <button :class="{ change_color: togglePromos }" class="animated_btn stores_btn" @click="toggleView(togglePromos)">Promotions</button>
+        		            <button :class="{ change_color: toggleEvents }" class="animated_btn stores_btn" @click="toggleView('events')">Events</button>
+        		            <button :class="{ change_color: togglePromos }" class="animated_btn stores_btn" @click="toggleView('promos')">Promotions</button>
         		        </div>
         		    </div>
                     <div v-if="toggleEvents">
@@ -111,16 +111,21 @@
             },
             created (){
                 this.loadData().then(response => {
-                    var temp_repo = this.findRepoByName('Events Banner');
-                    if(temp_repo !== null && temp_repo !== undefined) {
-                       temp_repo = temp_repo.images;
-                       this.pageBanner = temp_repo[0];
-                    }
-                    else {
+                    var temp_repo = this.findRepoByName('Events Banner').images;
+                    if(temp_repo != null) {
+                        this.pageBanner = temp_repo[0];
+                    } else {
                         this.pageBanner = {
-                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b71eb886e6f6450013c0000/image/jpeg/1529532304000/insidebanner2.jpg"
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b5f2c136e6f644fcb5b0100/image/jpeg/1529532304000/insidebanner2.jpg"
                         }
                     }
+
+                    if (_.isEmpty(this.eventList)) {
+                        this.toggleEvents = false;
+                        this.togglePromos = true;
+                        this.handleButton();
+                    }
+                    
                     this.dataLoaded = true;
                 });
             },
@@ -143,7 +148,7 @@
                         if (today >= showOnWebDate) {
                             var start_month = moment.tz(value.start_date, this.timezone).format("MM-YYYY");
                             if (start_month <= today_month) {
-                                value.month = 'On going'; // moment.tz(this.timezone).format("MMMM YYYY");
+                                value.month = moment.tz(this.timezone).format("MMMM YYYY");
                                 month_heading = today_month;
                             } else {
                                 value.month = moment.tz(value.start_date, this.timezone).format("MMMM YYYY");
@@ -204,16 +209,17 @@
                         this.handleButton();
                     }
                     
-                    if(this.toggleEvents) { 
-                        this.toggleEvents = false
+                    var selected = item;
+                    if (_.includes(item, 'events')) {
+                        if(!this.toggleEvents) { 
+                            this.toggleEvents = true
+                            this.togglePromos = false;
+                        }   
                     } else {
-                        this.toggleEvents = true
-                    }
-                    
-                    if(this.togglePromos) {
-                        this.togglePromos = false
-                    } else {
-                        this.togglePromos = true
+                        if(!this.togglePromos) {
+                            this.togglePromos = true;
+                            this.toggleEvents = false;
+                        }    
                     }
                 },
                 isMultiDay(promo) {
