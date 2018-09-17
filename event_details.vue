@@ -3,7 +3,7 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_page_header">
+                <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(' + pageBanner.image_url + ') center center' }">
                     <div class="main_container position_relative">
                         <h2>Events</h2>
                     </div>
@@ -39,7 +39,7 @@
                                     <div class="col-md-12">
                                         <router-link to="/events-and-promotions">
                     		                <div class="animated_btn pull-left">Back to Events & Promotions</div>    
-                    		            </router-link>     
+                    		            </router-link>    
                                     </div>
                                 </div>
                                 <social-sharing v-if="currentEvent" :url="shareURL(currentEvent.slug)" :title="currentEvent.name" :description="currentEvent.description" :quote="truncate(currentEvent.description)" :twitter-user="siteInfo.twitterHandle" :media="currentEvent.image_url" inline-template>
@@ -74,15 +74,36 @@
 			data: function() {
 				return {
 					dataLoaded: false,
+					pageBanner: null,
 					currentEvent: null,
 				    siteInfo: site,
 				}
 			},
 			created() {
 				this.$store.dispatch("getData", "events").then(response => {
+				    var temp_repo = this.findRepoByName('Events Banner').images;
+                    if(temp_repo != null) {
+                        this.pageBanner = temp_repo[0];
+                    } else {
+                        this.pageBanner = {
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b5f2c136e6f644fcb5b0100/image/jpeg/1529532304000/insidebanner2.jpg"
+                        }
+                    }
+                    
 					this.currentEvent = this.findEventBySlug(this.id);
 					if (this.currentEvent === null || this.currentEvent === undefined) {
 						this.$router.replace({ name: '404' });
+					}
+					else {
+					    if (this.currentEvent.eventable_type === "Store"){
+                            if (_.includes(this.currentEvent.event_image_url_abs, 'missing')) {
+                                this.currentEvent.image_url = this.currentEvent.store.store_front_url_abs; 
+                            }
+                        } else {
+                            if (_.includes(this.currentEvent.event_image_url_abs, 'missing')) {
+                                this.currentEvent.image_url = "//codecloud.cdn.speedyrails.net/sites/5b8712636e6f641ebd220000/image/png/1529532187000/eventsplaceholder2@2x.png";    
+                            }
+                        }
 					}
 					this.$breadcrumbs[1].meta.breadcrumb = this.currentEvent.name
 					this.dataLoaded = true;
@@ -90,27 +111,13 @@
 					console.error("Could not retrieve data from server. Please check internet connection and try again.");
 				});
 			},
-			watch: {
-                currentEvent : function (){
-                    if(this.currentEvent != null) {
-                        if (this.currentEvent.eventable_type === "Store"){
-                            if (_.includes(this.currentEvent.event_image_url_abs, 'missing')) {
-                                this.currentEvent.image_url = this.currentEvent.store.store_front_url_abs; 
-                            }
-                        } else {
-                            if (_.includes(this.currentEvent.event_image_url_abs, 'missing')) {
-                                this.currentEvent.image_url = "//codecloud.cdn.speedyrails.net/sites/5b71fb226e6f645093080000/image/png/1529532187000/eventsplaceholder2@2x.png";    
-                            }
-                        }
-                    }
-                }
-            },
 			computed: {
 				...Vuex.mapGetters([
 					'property',
 					'timezone',
 					'processedEvents',
 					'findEventBySlug',
+					'findRepoByName'
 				])
 			},
 			methods: {
