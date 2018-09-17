@@ -3,7 +3,7 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_page_header">
+                <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(' + pageBanner.image_url + ') center center' }">
                     <div class="main_container position_relative">
                         <h2>My Basket</h2>
                     </div>
@@ -68,6 +68,7 @@
             data: function () {
                 return {
                     dataLoaded: false,
+                    pageBanner : null,
                     selectedCoupons: null,
                     events: [],
                     moreEvents: [],
@@ -79,6 +80,17 @@
             },
             created (){
                 this.loadData().then(response => {
+                    var temp_repo = this.findRepoByName('Coupons Banner');
+                    if(temp_repo !== null && temp_repo !== undefined) {
+                       temp_repo = temp_repo.images;
+                       this.pageBanner = temp_repo[0];
+                    }
+                    else {
+                        this.pageBanner = {
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b71eb886e6f6450013c0000/image/jpeg/1529532304000/insidebanner2.jpg"
+                        }
+                    }
+                    
                     this.selectedCoupons = Cookies.get('coupon_ids');
                     this.selectedCoupons = JSON.parse(this.selectedCoupons);
                     this.dataLoaded = true;
@@ -89,7 +101,8 @@
                 ...Vuex.mapGetters([
                     'property',
                     'timezone',
-                    'findCouponById'
+                    'findCouponById',
+                    'findRepoByName'
                 ]),
                 couponList: function couponsList() {
                     if (this.selectedCoupons) {
@@ -117,7 +130,7 @@
             methods: {
                 loadData: async function () {
                     try {
-                        let results = await Promise.all([this.$store.dispatch("getData", "coupons")]);
+                        let results = await Promise.all([this.$store.dispatch("getData", "coupons"),this.$store.dispatch("getData", "repos")]);
                     } catch (e) {
                         console.log("Error loading data: " + e.message);
                     }
