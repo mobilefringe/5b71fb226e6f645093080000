@@ -74,9 +74,13 @@
                     if(temp_repo) {
                         this.pageImages = temp_repo.images;
                     }
-                    this.main = response[1].data;
-                    this.address = response[1].data.subpages[0]
-                    this.directions = response[1].data.subpages[1]
+                    if(response && response[1]){
+                        this.main = response[1].data;
+                        if(response[1].data && response[1].data.subpages){
+                           this.address = response[1].data.subpages[0];
+                           this.directions = response[1].data.subpages[1]
+                        }
+                    }
                     this.dataLoaded = true;
                 });
             },
