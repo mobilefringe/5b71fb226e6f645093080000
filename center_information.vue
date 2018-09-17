@@ -50,7 +50,7 @@
 </template>
 
 <script>
-	define(["Vue", "vuex"], function(Vue, Vuex) {
+	define(["Vue", "vuex", "json!site.json"], function(Vue, Vuex, Site) {
 		return Vue.component("center-info-component", {
             template: template, // the variable template will be injected
             data: function () {
@@ -84,9 +84,14 @@
                         var one_img = _.sortBy(temp_repo.images, function(o){return o.id})[3];
                         this.lowerBanner = one_img;
                     }
-                    
-                    this.main = response[1].data;
-                    this.amenities = response[1].data.subpages
+                    if(response && response[1]){
+                         this.main = response[1].data;
+                        if(response[1].data && response[1].data.subpages){
+                           this.amenities = response[1].data.subpages
+                        }
+                    }
+                    // this.main = response[1].data;
+                    // this.amenities = response[1].data.subpages
                     this.dataLoaded = true;
                 });
             },
