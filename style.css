@@ -406,14 +406,31 @@ img{
     }
     .footer_content {
         padding: 48px 0;
-        font-size: 0.9375rem;
-        line-height: 0.9375rem;
+        // font-size: 0.9375rem;
+        line-height: 1.25rem;
         text-align: center;
+        p {
+            margin: 0 0 5px;
+        }
+        .social_icon_container {
+            margin: 10px 0;
+        }
         .social_icon {
             padding: 0 5px;
+            .fab {
+                font-size: 2rem;
+            }
         }
-        .footer_links a {
-            color: $secondary;
+        .footer_links {
+            p {
+                margin: 0;
+            }
+            a {
+                color: #FFF;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
     }
     .copyright {
