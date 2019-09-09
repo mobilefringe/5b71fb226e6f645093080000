@@ -424,7 +424,7 @@ img{
                 font-size: 2rem;
             }
             a:hover {
-                color: $secondary;
+                color: #f79e54;
             }
         }
         .footer_links {
