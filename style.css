@@ -319,12 +319,13 @@ img{
                 color: #FFF;
                 &:hover, &:active, &:focus, &:visited {
             	    background: $secondary;
+            	    color: #000;
             	}
             	p {
             	    margin: 0;
             	}
             	a:hover {
-                    color: #FFF;
+                    color: #000;
                 }
             }
         }
