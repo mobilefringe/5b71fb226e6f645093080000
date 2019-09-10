@@ -427,6 +427,12 @@ img{
                 color: #f79e54;
             }
         }
+        .margin_40{
+            a:hover{
+            color: #FFF;
+            text-decoration: underline;
+        }
+        }
         .footer_links {
             p {
                 margin: 0;
@@ -447,6 +453,10 @@ img{
         text-align: center;
         p {
             margin: 0;
+        }
+        a:hover{
+            color: #FFF;
+            text-decoration: underline;
         }
     }
 }
