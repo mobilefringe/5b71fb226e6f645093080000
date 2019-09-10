@@ -826,7 +826,7 @@ img{
     }
 }
 .animated_btn:hover {
-    color: #FFF;
+    color: #000;
     text-decoration: none;
     &:before {
         -webkit-transform: scale3d(9, 9, 1);
