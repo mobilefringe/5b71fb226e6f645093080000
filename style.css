@@ -403,7 +403,7 @@ img{
             text-transform: uppercase;
             transition: all 0.3s ease;
             &:hover {
-                color: #FFF;
+                color: #000;
             }
         }
     }
