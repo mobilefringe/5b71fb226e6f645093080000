@@ -835,6 +835,7 @@ img{
 }
 .change_color {
     background-color: $secondary;
+    color: #000;
 }
 .list-item {
     display: inline-block;
