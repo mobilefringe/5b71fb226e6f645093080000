@@ -17,6 +17,9 @@
                     <div class="row" v-if="main">
                         <div class="col-md-12">
                             <div  v-html="main.body"></div>
+                            <div>
+                                <p><strong>It’s easy to get to the Anaheim Hills Festival and even easier to make it your favorite destination in Anaheim. The shopping center is conveniently located at the intersections of E Santa Ana Canyon Rd and S Weir Canyon Rd near the California 91 Express Lanes.</strong></p>
+                            </div>
                         </div>
                     </div>
                 </div>
