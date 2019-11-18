@@ -3,9 +3,9 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_page_header" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(' + pageBanner.image_url + ') center center' }">
+                <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), #000 url(' + pageBanner.image_url + ') center center' }">
                     <div class="main_container position_relative">
-                        <h2>Center Map</h2>
+                        <h1>Center Map</h1>
                     </div>
                 </div>
                 <div class="main_container">
@@ -16,7 +16,7 @@
                     </div>
                     <div class="row margin_60">
                         <div class="col-md-3 padding_60">
-                            <h5 class="store_list_title margin_20">Select a Category</h5>
+                            <h2 class="store_list_title margin_20">Select a Category</h2>
                             <div class="map_category">
                                 <v-select 
             					    v-model="selectedCat" 
@@ -35,6 +35,7 @@
                                     :suggestion-attribute="suggestionAttribute" 
                                     @select="onOptionSelect" 
                                     :threshold="1"
+                                    class="mapSearch"
                                 >
                                     <template slot="item" scope="option">
                                         <article class="media">
@@ -74,7 +75,6 @@
             },
             created (){
                 this.loadData().then(response => {
-                    this.loadData().then(response => {
                     var temp_repo = this.findRepoByName('Map Banner');
                     if(temp_repo !== null && temp_repo !== undefined) {
                        temp_repo = temp_repo.images;
@@ -82,12 +82,10 @@
                     }
                     else {
                         this.pageBanner = {
-                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b71eb886e6f6450013c0000/image/jpeg/1529532304000/insidebanner2.jpg"
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624485505/creekside_banner.png"
                         }
                     }
-                    
                     this.dataLoaded = true;
-                });
                 });
             },
             computed: {
@@ -109,7 +107,8 @@
                     return this.processedCategories;
                 },
                 dropDownCats() {
-                    var cats = _.map(this.processedCategories, 'name');
+                    var cats = _.filter(this.processedCategories, function(o) { return o.name != "Dine Filter" && o.store_ids != null; });
+                    cats = _.map(cats, 'name');
                     cats.unshift('All');
                     return cats;
                 },
@@ -147,7 +146,7 @@
                     floor_1.id = "first-floor";
                     floor_1.title = "Floor 1";
                     floor_1.map = this.getPNGurl;
-                    floor_1.z_index = 1;
+                    floor_1.z_index = null;
                     floor_1.show = true;
                     
                     floor_list.push(floor_1);
@@ -163,7 +162,8 @@
                         console.log("Error loading data: " + e.message);
                     }
                 },
-                dropPin(store) {
+                 dropPin(store) {
+                    console.log(store)
                     this.pngMapRef.showLocation(store.id);
                 },
                 onOptionSelect(option) {
