@@ -3,9 +3,9 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_page_header" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(' + pageBanner.image_url + ') center center' }">
+                <div class="inside_page_header" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), #000 url(' + pageBanner.image_url + ') center center' }">
                     <div class="main_container position_relative">
-                        <h2>{{ currentStore.name }}</h2>
+                        <h1>{{ currentStore.name }}</h1>
                     </div>
                 </div>
                 <div class="main_container">
@@ -17,16 +17,15 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="sidebar">
-                                <!--<img class="store_details_image center-block" :src="currentStore.store_front_url_abs" :alt="currentStore.name + ' Logo'" />-->
                                 <div v-if="currentStore.no_logo" class="store_details_no_logo center-block">
                                     <div class="no_logo">
-                                        <img class="transparent_logo" src="//codecloud.cdn.speedyrails.net/sites/5b1550796e6f641cab010000/image/png/1536094421888/default_background.png">
+                                        <img class="transparent_logo" src="//codecloud.cdn.speedyrails.net/sites/5b1550796e6f641cab010000/image/png/1536094421888/default_background.png" :alt="currentStore.name">
                                         <p class="store_details_name">{{ currentStore.name }}</p>
                                     </div>    
                                 </div>
                                 <div id="store_dets_logo_container" v-else>
-                                    <img class="transparent_logo" src="//codecloud.cdn.speedyrails.net/sites/5b1550796e6f641cab010000/image/png/1536094421888/default_background.png">
-                    			    <img  class="store_details_image" :src="currentStore.store_front_url_abs" alt="">
+                                    <img class="transparent_logo" src="//codecloud.cdn.speedyrails.net/sites/5b1550796e6f641cab010000/image/png/1536094421888/default_background.png" alt="">
+                    			    <img class="store_details_image" :src="currentStore.store_front_url_abs" :alt="currentStore.name">
                                 </div>
                                 <div class="margin_20 center" v-if="currentStore.phone">
                                     <a class="store_details_phone" :href="'tel:' + currentStore.phone">{{ currentStore.phone }}</a>    
@@ -49,11 +48,22 @@
                         </div>
                         <div class="col-md-8">
                             <div id="map" class="margin_20">
-                                <mapplic-png-map ref="pngmap_ref" :height="314" :hovertip="true" :storelist="allStores" :floorlist="floorList" :svgWidth="property.map_image_width" :svgHeight="property.map_image_height" @updateMap="updatePNGMap"></mapplic-png-map>
+                                <mapplic-png-map ref="pngmap_ref" :height="314" :hovertip="true" :storelist="allStores" :floorlist="floorList" :svgWidth="property.map_image_width" :svgHeight="property.map_image_height" @updateMap="updatePNGMap" class="store_details_map"></mapplic-png-map>
                             </div>
                             <div class=" margin_30 store_details_desc" v-html="currentStore.rich_description"></div>
+                            <div v-if="deliveryAvailable" class="margin_30">
+                                <h2 class="store_details_title">Delivery Options:</h2>
+                                <div class="store_details_delivery">
+                                    <img v-if="hasDoordash" class="delivery_option" src="//codecloud.cdn.speedyrails.net/sites/5d8ac35a6e6f647bec090000/image/png/1568400931000/doordash.png" alt="Delivery available with DoorDash" />
+                                    <img v-if="hasGrubhub" class="delivery_option" src="//codecloud.cdn.speedyrails.net/sites/5d8ac35a6e6f647bec090000/image/png/1568400381000/grubhub.png" alt="Delivery available with Grubhub" />
+                                    <img v-if="hasPostmates" class="delivery_option" src="//codecloud.cdn.speedyrails.net/sites/5d8ac35a6e6f647bec090000/image/png/1569270191004/postmates.png" alt="Delivery available with Postmates" />
+                                    <div v-if="hasRestaurantDelivery" class="delivery_option"><span>Restaurant Delivery</span></div>
+                                    <img v-if="hasUberEats" class="delivery_option" src="//codecloud.cdn.speedyrails.net/sites/5d8ac35a6e6f647bec090000/image/png/1568400422000/ubereats.png" alt="Delivery available with Uber Eats" />
+                                    
+                                </div>
+                            </div>
                             <div v-if="currentStore.events">
-                                <h3 class="store_details_title">Current Events</h3>
+                                <h2 class="store_details_title">Current Events</h2>
                                 <div class="row margin_40">
                                     <div class="col-md-6" v-if="storeEvents" v-for="item in storeEvents">
                                         <div class="feature_item_container">
@@ -94,7 +104,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div v-if="this.currentStore.coupons">
+                            <div v-if="currentStore.coupons">
                                 <h3 class="store_details_title">Current Coupons</h3> 
                                 <div class="row margin_40">
                                     <div class="col-md-6" v-if="storeCoupons" v-for="item in storeCoupons">
@@ -131,7 +141,7 @@
 </template>
 
 <style>
-    .mapplic-popup-link {
+    .store_details_map .mapplic-popup-link {
         display: none !important;
     }
 </style>
@@ -150,7 +160,13 @@
                     map: null,
                     storeEvents: null,
                     storePromotions: null,
-                    storeCoupons: null
+                    storeCoupons: null,
+                    deliveryAvailable: false,
+                    hasDoordash: false,
+                    hasGrubhub: false,
+                    hasPostmates: false,
+                    hasRestaurantDelivery: false,
+                    hasUberEats: false
                 }
             },
             props:['id'],
@@ -163,7 +179,7 @@
                     }
                     else {
                         this.pageBanner = {
-                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b71eb886e6f6450013c0000/image/jpeg/1529532304000/insidebanner2.jpg"
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624485505/creekside_banner.png"
                         }
                     }
                     
@@ -249,13 +265,36 @@
                         });
                         this.storeHours = _.sortBy(storeHours, function(o) { return o.day_of_week });
                     
+                        // DELIVERY
+                        var delivery_category = 8238;
+                        var categories = this.currentStore.categories;
+                        var subcategories = this.currentStore.subcategories;
+                        if (_.includes(categories, delivery_category) && !_.isEmpty(subcategories)) {
+                            this.deliveryAvailable = true;
+                            if (_.includes(subcategories, 8250)) {
+                                this.hasUberEats = true;
+                            }
+                            if (_.includes(subcategories, 8239)) {
+                                this.hasDoordash = true;
+                            }
+                            if (_.includes(subcategories, 8240)) {
+                                this.hasGrubhub = true;
+                            }
+                            if (_.includes(subcategories, 8242)) {
+                                this.hasPostmates = true;   
+                            }
+                            if (_.includes(subcategories, 8243)) {
+                                this.hasRestaurantDelivery = true;   
+                            }
+                        }
+                        
                         var vm = this;
                         var temp_promo = [];
                         _.forEach(this.currentStore.promotions, function(value, key) {
                             var current_promo = vm.findPromoById(value);
                             
                             if (_.includes(current_promo.image_url, 'missing')) {
-                                current_promo.image_url = "//codecloud.cdn.speedyrails.net/sites/5b8712636e6f641ebd220000/image/png/1529532181000/promoplaceholder2@2x.png";
+                                current_promo.image_url = "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624484143/creekside_placeholder.png";
                             }
     
                             temp_promo.push(current_promo);
@@ -268,7 +307,7 @@
                             var current_event = vm.findEventById(value);
                             
                             if (_.includes(current_event.image_url, 'missing')) {
-                                current_event.image_url = "//codecloud.cdn.speedyrails.net/sites/5b8712636e6f641ebd220000/image/png/1529532187000/eventsplaceholder2@2x.png";
+                                current_event.image_url = "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624484143/creekside_placeholder.png";
                             }
     
                             temp_event.push(current_event);
