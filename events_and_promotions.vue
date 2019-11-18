@@ -3,9 +3,9 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(' + pageBanner.image_url + ') center center' }">
+                <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), #000 url(' + pageBanner.image_url + ') center center' }">
                     <div class="main_container position_relative">
-                        <h2>Events & Promotions</h2>
+                        <h1>Events & Promotions</h1>
                     </div>
                 </div>
                 <div class="main_container">
@@ -24,7 +24,7 @@
                         <div v-if="eventList" v-for="(events, key) in eventList">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h3 class="event_date_heading">{{ key }}</h3> 
+                                    <h2 class="event_date_heading">{{ key }}</h2> 
                                 </div>
                             </div>
                             <div class="row event_container" v-for="event in events">
@@ -32,12 +32,13 @@
                                     <img :src="event.image_url" :alt="'Event: ' + event.name" class="event_img img_max" />   
                                 </div>
                                 <div class="col-md-8">
-                                    <h4 class="event_name">{{ event.name }}</h4>
+                                    <h3 class="event_name">{{ event.name }}</h3>
                                     <p class="event_dates"><span v-if="event.tags && event.tags.length >0">{{event.tags[0]}} | </span> <span v-if="isMultiDay(event)">{{ event.start_date | moment("MMMM D", timezone)}} to {{ event.end_date | moment("MMMM D", timezone)}}</span><span v-else>{{ event.start_date | moment("MMMM D", timezone)}}</span></p>
                                     <div class="event_desc" v-html="event.description_short"></div>
                                     <router-link :to="{ name: 'eventDetails', params: { id: event.slug, banner: pageBanner }}">
-                                        <p class="event_link">Event Details <i class="fas fa-angle-double-right"></i></p>
+                                        <div class="animated_btn event_link">View Event Details <i class="fas fa-angle-double-right"></i></div>
                                     </router-link>
+                                    <hr class="event_seperator">
                                 </div>
                             </div>
                         </div>
@@ -61,12 +62,13 @@
                                                 {{ item.store.name }}
                                             </router-link>        
                                         </p>
-                                        <h4 class="event_name">{{ item.name }}</h4>
+                                        <h2 class="event_name">{{ item.name }}</h2>
                                         <p class="event_dates"><span v-if="isMultiDay(item)">{{ item.start_date | moment("MMMM D", timezone)}} - {{ item.end_date | moment("MMMM D", timezone)}}</span><span v-else>{{ item.start_date | moment("MMMM D", timezone)}}</span></p>
                                         <div class="event_desc" v-html="item.description_short"></div>
                                         <router-link :to="{ name: 'promotionDetails', params: { id: item.slug, banner: pageBanner }}">
-                                            <p class="event_link">Promotion Details <i class="fas fa-angle-double-right"></i></p>
+                                            <div class="animated_btn event_link">View Promotion Details <i class="fas fa-angle-double-right"></i></div>
                                         </router-link>
+                                        <hr class="event_seperator">
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +118,7 @@
                         this.pageBanner = temp_repo[0];
                     } else {
                         this.pageBanner = {
-                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b5f2c136e6f644fcb5b0100/image/jpeg/1529532304000/insidebanner2.jpg"
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624485505/creekside_banner.png"
                         }
                     }
 
@@ -156,11 +158,11 @@
                             }
 
                             if (value.store != null && value.store != undefined && _.includes(value.store.image_url, 'missing')) {
-                                value.store.image_url = "//codecloud.cdn.speedyrails.net/sites/5b1550796e6f641cab010000/image/png/1529532187000/eventsplaceholder2@2x.png";
+                                value.store.image_url = "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624484143/creekside_placeholder.png";
                             }
                             
                             if (_.includes(value.image_url, 'missing')) {
-                                value.image_url = "//codecloud.cdn.speedyrails.net/sites/5b1550796e6f641cab010000/image/png/1529532187000/eventsplaceholder2@2x.png";
+                                value.image_url = "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624484143/creekside_placeholder.png";
                             }
                             
                             value.description_short = _.truncate(value.description, { 'length': 250, 'separator': ' ' });
@@ -180,11 +182,11 @@
                         var showOnWebDate = moment.tz(value.show_on_web_date, this.timezone).format();
                         if (today >= showOnWebDate) {
                             if (value.store != null && value.store != undefined && _.includes(value.store.image_url, 'missing')) {
-                                value.store.image_url = "//codecloud.cdn.speedyrails.net/sites/5b1550796e6f641cab010000/image/png/1529532181000/promoplaceholder2@2x.png";
+                                value.store.image_url = "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624484143/creekside_placeholder.png";
                             }
                             
                             if (_.includes(value.image_url, 'missing')) {
-                                value.image_url = "//codecloud.cdn.speedyrails.net/sites/5b1550796e6f641cab010000/image/png/1529532181000/promoplaceholder2@2x.png";
+                                value.image_url = "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624484143/creekside_placeholder.png";
                             }
                             
                             value.description_short = _.truncate(value.description, { 'length': 250, 'separator': ' ' });
