@@ -3,9 +3,9 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(' + pageBanner.image_url + ') center center' }">
+                <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), #000 url(' + pageBanner.image_url + ') center center' }">
                     <div class="main_container position_relative">
-                        <h2>Location</h2>
+                        <h1>Location</h1>
                     </div>
                 </div>
                 <div class="main_container">
@@ -20,22 +20,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="location_map">
-                    <google-map :property="property" :zoom="16"></google-map>
+                <div class="main_container">
+                    <div class="location_map">
+                        <iframe :src="propertyAddress()" width="100%" height="490" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
                 </div>
                 <div class="main_container">
-                    <div class="row">
+                    <div class="row location_content">
                         <div class="col-md-6" v-if="address">
                             <div v-html="address.body"></div>
                         </div>
-                        <div class="col-md-6" v-if="directions">
-                            <div v-html="directions.body"></div>
+                        <div class="col-md-6" v-if="office">
+                            <div v-html="office.body"></div>
                         </div>
                     </div>
                 </div>
                 <div class="location_image_container">
                     <div class="location_image" v-if="pageImages" v-for="item in pageImages">
-                        <img :src="item.image_url" alt="item.id" class="img_max" />   
+                        <img :src="item.image_url" alt="" class="img_max" />   
                     </div>
                 </div>
             </div>
@@ -66,7 +68,7 @@
                     }
                     else {
                         this.pageBanner = {
-                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b71eb886e6f6450013c0000/image/jpeg/1529532304000/insidebanner2.jpg"
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624485505/creekside_banner.png"
                         }
                     }
                     
@@ -78,7 +80,7 @@
                         this.main = response[1].data;
                         if(response[1].data && response[1].data.subpages){
                            this.address = response[1].data.subpages[0];
-                           this.directions = response[1].data.subpages[1]
+                           this.office = response[1].data.subpages[1]
                         }
                     }
                     this.dataLoaded = true;
@@ -103,6 +105,12 @@
                     } catch (e) {
                         console.log("Error loading data: " + e.message);
                     }
+                },
+                propertyAddress() {
+                    var address = this.property.name + "+" + this.property.address1 + "+" + this.property.city + "+" + this.property.province_state + "+" + this.property.country + this.property.postal_code
+                    var key ="AIzaSyCukCjH3fsuDYBdI44hZKL43m60jEToJjY"
+                    var src = "https://www.google.com/maps/embed/v1/place?q=" + address + "&key="+ key
+                    return src
                 }
             }
         });
