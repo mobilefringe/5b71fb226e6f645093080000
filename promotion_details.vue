@@ -3,7 +3,7 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-               <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(' + pageBanner.image_url + ') center center' }">
+                <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), #000 url(' + pageBanner.image_url + ') center center' }">
                     <div class="main_container position_relative">
                         <h2>Sales & Promotions</h2>
                     </div>
@@ -37,8 +37,8 @@
                                 <div class="row margin_30">
                                     <div class="col-md-12">
                                         <router-link to="/events-and-promotions">
-                    		                <div class="animated_btn pull-left">Back to Events & Promotions</div>    
-                    		            </router-link>   
+                    		                <div class="animated_btn pull-left">Back to Events and Promotions</div>    
+                    		            </router-link>      
                                     </div>
                                 </div>
                                 <social-sharing v-if="currentPromo" :url="shareURL(currentPromo.slug)" :title="currentPromo.name" :description="currentPromo.description" :quote="truncate(currentPromo.description)" :twitter-user="siteInfo.twitterHandle" :media="currentPromo.image_url" inline-template>
@@ -46,9 +46,9 @@
                                         <network network="facebook">
                                             <i class="fab fa-facebook"></i>
                                         </network>
-                                        <network network="twitter">
-                                            <i class="fab fa-twitter"></i>
-                                        </network>
+                                        <!--<network network="twitter">-->
+                                        <!--    <i class="fab fa-twitter"></i>-->
+                                        <!--</network>-->
                                         <network network="email">
                                             <i class="fas fa-envelope"></i>
                                         </network>
@@ -80,14 +80,14 @@
             },
             created() {
 				this.$store.dispatch("getData", "promotions").then(response => {
-				    var temp_repo = this.findRepoByName('Events Banner').images;
-                    if(temp_repo != null) {
-                        this.pageBanner = temp_repo[0];
-                    } else {
-                        this.pageBanner = {
-                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b5f2c136e6f644fcb5b0100/image/jpeg/1529532304000/insidebanner2.jpg"
-                        }
-                    }
+				    // var temp_repo = this.findRepoByName('Events Banner').images;
+        //             if(temp_repo != null) {
+        //                 this.pageBanner = temp_repo[0];
+        //             } else {
+        //                 this.pageBanner = {
+        //                     "image_url": "//codecloud.cdn.speedyrails.net/sites/5b5f2c136e6f644fcb5b0100/image/jpeg/1529532304000/insidebanner2.jpg"
+        //                 }
+        //             }
                     
 					this.currentPromo = this.findPromoBySlug(this.id);
 					if (this.currentPromo === null || this.currentPromo === undefined) {
@@ -100,11 +100,11 @@
                             }
                         } else {
                             if  (_.includes(this.currentPromo.promo_image_url_abs, 'missing')) {
-                                this.currentPromo.image_url = "//codecloud.cdn.speedyrails.net/sites/5b8712636e6f641ebd220000/image/png/1529532181000/promoplaceholder2@2x.png";    
+                                this.currentPromo.image_url = "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624484143/creekside_placeholder.png";    
                             }
                         }
 					}
-					this.$breadcrumbs[1].meta.breadcrumb = this.currentPromo.name
+					this.$breadcrumbs[2].meta.breadcrumb = this.currentPromo.name
 					this.dataLoaded = true;
 				}, error => {
 					console.error("Could not retrieve data from server. Please check internet connection and try again.");
