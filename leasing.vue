@@ -3,9 +3,9 @@
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
-                <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(' + pageBanner.image_url + ') center center' }">
+                <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ background: 'linear-gradient(0deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2)), #000 url(' + pageBanner.image_url + ') center center' }">
                     <div class="main_container position_relative">
-                        <h2>Leasing</h2>
+                        <h1>Leasing</h1>
                     </div>
                 </div>
                 <div class="main_container">
@@ -16,16 +16,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div v-if="main" v-html="main.body"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a v-if="leasingBooklet" :href="leasingBooklet" target="_blank">
-        		                <div class="animated_btn leasing_btn">
-        		                    Leasing Booklet
-        		                </div>    
-        		            </a>    
+                            <div class="leasing_main" v-if="main" v-html="main.body"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -43,6 +34,14 @@
         </transition>
     </div>
 </template>
+<style>
+    .row .col-md-12 h2{
+        font-size: 16px;
+        line-height: 1.5rem;
+        margin:auto;
+        color: #195573;
+    }
+</style>
 
 <script>
 	define(["Vue", "vuex", "json!site.json"], function(Vue, Vuex, Site) {
@@ -64,7 +63,7 @@
                         this.pageBanner = temp_repo.images[0];
                     } else {
                         this.pageBanner = {
-                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b71eb886e6f6450013c0000/image/jpeg/1529532304000/insidebanner2.jpg"
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624485505/creekside_banner.png"
                         }
                     }
                     
@@ -77,6 +76,7 @@
                     if(temp_repo2) {
                         this.pageImages = temp_repo2.images;
                     }
+                    console.log(temp_repo2)
 
                     if(response && response[1]){
                         this.main = response[1].data;
