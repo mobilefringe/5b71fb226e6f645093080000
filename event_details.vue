@@ -17,14 +17,14 @@
                     <div  v-if="currentEvent">
                         <div class="row">
                             <div class="col-md-8">
-                                <h4 class="event_name">{{ currentEvent.name }}</h4>
+                                <h2 class="event_name">{{ currentEvent.name }}</h2>
                                 <p class="event_details_dates">
                                     <span v-if="isMultiDay(currentEvent)">{{ currentEvent.start_date | moment("MMMM D", timezone)}} - {{ currentEvent.end_date | moment("MMMM D", timezone)}}</span>
                                     <span v-else>{{ currentEvent.start_date | moment("MMMM D", timezone)}}</span>
                                 </p>
-                                <p class="event_details_dates">
-                                    Location
-                                </p>
+                                <!--<p class="event_details_dates">-->
+                                <!--    Location-->
+                                <!--</p>-->
                                 <div class="event_desc event_details" v-html="currentEvent.rich_description"></div>
                             </div>
                             <div class="col-md-4">
@@ -38,7 +38,7 @@
                                 <div class="row margin_30">
                                     <div class="col-md-12">
                                         <router-link to="/events-and-promotions">
-                    		                <div class="animated_btn pull-left">Back to Events & Promotions</div>    
+                    		                <div class="animated_btn pull-left">Back to Events and Promotions</div>    
                     		            </router-link>    
                                     </div>
                                 </div>
@@ -47,9 +47,9 @@
                                         <network network="facebook">
                                             <i class="fab fa-facebook"></i>
                                         </network>
-                                        <network network="twitter">
-                                            <i class="fab fa-twitter"></i>
-                                        </network>
+                                        <!--<network network="twitter">-->
+                                        <!--    <i class="fab fa-twitter"></i>-->
+                                        <!--</network>-->
                                         <network network="email">
                                             <i class="fas fa-envelope"></i>
                                         </network>
@@ -86,7 +86,7 @@
                         this.pageBanner = temp_repo[0];
                     } else {
                         this.pageBanner = {
-                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5b5f2c136e6f644fcb5b0100/image/jpeg/1529532304000/insidebanner2.jpg"
+                            "image_url": "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624485505/creekside_banner.png"
                         }
                     }
                     
@@ -101,7 +101,7 @@
                             }
                         } else {
                             if (_.includes(this.currentEvent.event_image_url_abs, 'missing')) {
-                                this.currentEvent.image_url = "//codecloud.cdn.speedyrails.net/sites/5b8712636e6f641ebd220000/image/png/1529532187000/eventsplaceholder2@2x.png";    
+                                this.currentEvent.image_url = "//codecloud.cdn.speedyrails.net/sites/5dcd73f56e6f642ee8000000/image/png/1553624484143/creekside_placeholder.png";    
                             }
                         }
 					}
