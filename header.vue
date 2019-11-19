@@ -49,7 +49,7 @@
         							        <router-link :to="item.href" v-if="item.sub_menu == undefined">
         							            <div class="btn-block">{{$t(item.name)}}</div>
     							            </router-link>
-        							        <div v-else role="tablist">
+        							        <div v-else aria-role="accordion">
                                                 <b-card no-body class="mb-1">
                                                     <b-card-header header-tag="header" class="p-1" role="tab">
                                                         <b-btn block href="#" v-b-toggle="$t(item.name)" variant="info">
