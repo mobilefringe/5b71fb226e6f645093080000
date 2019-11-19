@@ -14,7 +14,7 @@
                                         <span v-if="banner.heading" class="banner_heading">{{ banner.heading }}</span>
                                         <h1 class="banner_title">{{ banner.name }}</h1>
                                         <p class="banner_text">{{ banner.description }}</p>
-                                        <a :href="banner.url">
+                                        <a :href="banner.url" :aria-label="banner.name">
                                             <span class="banner_btn animated_btn">Find Out More</span>
                                         </a>
                                     </div>
