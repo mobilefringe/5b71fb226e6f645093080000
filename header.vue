@@ -51,14 +51,14 @@
     							            </router-link>
         							        <div v-else aria-role="accordion">
                                                 <b-card no-body class="mb-1">
-                                                    <b-card-header header-tag="header" class="p-1" role="tab">
+                                                    <b-card-header header-tag="header" class="p-1" role="menu heading">
                                                         <b-btn block href="#" v-b-toggle="$t(item.name)" variant="info">
                                                             {{$t(item.name)}}
                                                             <i v-if="item.show_sub_menu"  class="fas fa-angle-down"></i>
                                                             <i v-else  class="fas fa-angle-right"></i>
                                                         </b-btn>
                                                     </b-card-header>
-                                                    <b-collapse :id="$t(item.name)" accordion="my-accordion" role="tabpanel" class="accordion_body">
+                                                    <b-collapse :id="$t(item.name)" accordion="my-accordion" role="sub-navigation" class="accordion_body">
                                                         <b-card-body v-for="sub_menu in item.sub_menu">
                                                             <p class="card-text">
                                                                 <router-link :to="sub_menu.href">{{$t(sub_menu.name)}}</router-link>
