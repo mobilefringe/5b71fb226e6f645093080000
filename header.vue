@@ -26,7 +26,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <nav id="primary_nav" aria-role="Main Navigation">
+                        <nav id="primary_nav" role="Main Navigation">
     						<ul>
     						    <li class="menu_item" v-for="item in menu_items" :id="item.id">
     						        <router-link v-if="item.sub_menu == undefined" :to="item.href">{{ item.name }}</router-link>
