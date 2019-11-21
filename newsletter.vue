@@ -1,5 +1,5 @@
 <template>
-    <div> <!-- without an outer container div this component template will not render -->
+    <main> <!-- without an outer container div this component template will not render -->
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
@@ -48,8 +48,9 @@
                 </div>
             </div>
         </transition>
-    </div>
+    </main>
 </template>
+
 <script>
     define(["Vue", "vuex", "jquery", "vee-validate", "json!site.json"], function(Vue, Vuex, $, VeeValidate, site) {
         Vue.use(VeeValidate);
