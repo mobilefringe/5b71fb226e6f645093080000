@@ -1,11 +1,11 @@
 <template>
-    <div> <!-- Without an outer container div this component template will not render -->
+    <main> <!-- Without an outer container div this component template will not render -->
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
                 <div class="inside_page_header" v-if="pageBanner" v-bind:style="{ backgroundImage: 'url(' + pageBanner.image_url + ')' }">
                     <div class="main_container position_relative">
-                        <h1>Events</h1>
+                        <h1>Events & Promotions</h1>
                     </div>
                 </div>
                 <div class="main_container">
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </transition>
-    </div>
+    </main>
 </template>
 
 <script>
