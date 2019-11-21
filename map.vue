@@ -56,8 +56,9 @@
                 </div>
             </div>
         </transition>
-    </div>
+    </main>
 </template>
+
 <script>
     define(["Vue", "vuex", "vue-select", "vue!search-component", "vue!mapplic-png-map"], function(Vue, Vuex, VueSelect, SearchComponent, MapplicComponent) {
         Vue.component('v-select', VueSelect.VueSelect);
