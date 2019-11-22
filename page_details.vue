@@ -63,7 +63,7 @@
                     this.$store.dispatch('LOAD_PAGE_DATA', { url: this.property.mm_host + "/pages/" + this.id + ".json" }).then(function (response) {
                         _this.currentPage = response.data;
                         _this.$breadcrumbs[0].meta.breadcrumb = _this.currentPage.title
-                        _this.meta = _this.findMetaDataByPath(this.$route.path);
+                        _this.meta = _this.findMetaDataByPath(_this.$route.path);
                         _this.dataLoaded = true;
                     }, function (error) {
                         console.error( "Could not retrieve data from server. Please check internet connection and try again.");
