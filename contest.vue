@@ -1,5 +1,5 @@
 <template>
-    <div> <!-- without an outer container div this component template will not render -->
+    <main> <!-- without an outer container div this component template will not render -->
         <loading-spinner v-if="!dataLoaded"></loading-spinner>
         <transition name="fade">
             <div v-if="dataLoaded" v-cloak>
@@ -85,7 +85,7 @@
                 </div>
             </div>
         </transition>
-    </div>
+    </main>
 </template>
 <script>
     define(["Vue", "vuex", "jquery", "axios", "vee-validate"], function(Vue, Vuex, $, axios, VeeValidate) {
@@ -107,7 +107,7 @@
             },
             created() {
                 this.$store.dispatch("getData", "contests").then(response => {
-                    this.currentContest = this.findContestByShowOnSlug('cerritos-contest');
+                    this.currentContest = this.findContestByShowOnSlug('/district-contest');
                     this.dataLoaded = true;
                 }, error => {
                     console.error("Could not retrieve data from server. Please check internet connection and try again.");
