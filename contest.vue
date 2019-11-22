@@ -52,8 +52,8 @@
         						</div>
         						<div class="form-group">
         							<div class="col-xs-12" :class="{'has-error': errors.has('email')}">
-        								<label class="visuallyhidden" for="emailAddress">Email</label>
-        								<input id="emailAddress" v-model="form_data.email" v-validate="'required|email'" class="form-control" :class="{'input': true}" name="email" type="email" placeholder="Email" data-vv-delay="500" data-vv-as="email">
+        								<label class="visuallyhidden" for="email_address">Email</label>
+        								<input id="email_address" v-model="form_data.email" v-validate="'required|email'" class="form-control" :class="{'input': true}" name="email" type="email" placeholder="Email" data-vv-delay="500" data-vv-as="email">
         								<span v-show="errors.has('email')" class="form-control-feedback">{{ errors.first('email') }}</span>
         							</div>
         						</div>
