@@ -33,7 +33,13 @@
             data: function data() {
                 return {
                     dataLoaded: false,
-                    currentPage: null
+                    currentPage: null,
+                    meta: {
+                        meta_title: "",
+                        meta_description: "",
+                        meta_keywords: "",
+                        meta_image: ""
+                    }
                 }
             },
             created() {
