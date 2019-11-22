@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    define(["Vue", "vuex"], function (Vue, Vuex) {
+    define(["Vue", "vuex", "vue-meta"], function (Vue, Vuex, Meta) {
         return Vue.component("page-details-component", {
             template: template, // the variable template will be injected,
             props: ['id'],
