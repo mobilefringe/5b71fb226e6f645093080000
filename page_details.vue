@@ -5,7 +5,7 @@
             <div v-if="dataLoaded" v-cloak>
                  <div class="inside_page_header">
                     <div class="main_container position_relative">
-                        <h2 v-html="currentPage.title"></h2>
+                        <h1 v-html="currentPage.title"></h1>
                     </div>
                 </div>
                 <div class="main_container">
