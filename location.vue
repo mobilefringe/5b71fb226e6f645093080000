@@ -25,7 +25,7 @@
                 </div>
                 <div class="main_container">
                     <div class="location_map">
-                        <iframe role="img" :aria-label="'Google Map showing surrounding area of ' + property.name" :src="propertyAddress()" width="100%" height="490" frameborder="0" style="border:0" allowfullscreen :aria-label="'Google Map for ' + property.name"></iframe>
+                        <iframe role="img" :aria-label="'Google Map showing surrounding area of ' + property.name" :src="propertyAddress()" width="100%" height="490" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="main_container">
